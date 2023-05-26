@@ -12,6 +12,8 @@ jobs:
         with:
           node-version: '16'
       - run: npm i -g yarn
+      - run: npm i -g pm2
       - run: yarn
       - run: yarn build
       - run: yarn test
+      - run: pm2 start "yarn start:prod" --name nest-ci-cd.api
