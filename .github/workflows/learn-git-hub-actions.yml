@@ -12,4 +12,4 @@ jobs:
       - run: yarn
       - run: yarn test
       - run: yarn build
-      - run: pm2 start nest-ci-cd.api
+      - run: pm2 restart nest-ci-cd.api
