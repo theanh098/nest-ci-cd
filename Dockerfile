@@ -1,6 +1,8 @@
 FROM node:18
 WORKDIR /app
+COPY ./package.json ./
+RUN yarn 
 COPY . .
-RUN yarn install --production
-CMD ["node", "dist/main"]
+RUN yarn build
+CMD ["yarn", "start:prod"]
 EXPOSE 3000
