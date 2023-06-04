@@ -68,5 +68,5 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
           script: |
-            docker run dp
-            ../scripts/deploy.sh
+            whoami
+            cat thoanh.text
