@@ -68,5 +68,9 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
           script: |
-            whoami
-            cat thoanh.text
+            ho_mang_098_compose
+            docker stop nest-app-api
+            docker rm nest-app-api  
+            docker image prune -a -f
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nest-ci-cd:latest
+            docker run --name=nest-app-api -dp 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/nest-ci-cd:latest
