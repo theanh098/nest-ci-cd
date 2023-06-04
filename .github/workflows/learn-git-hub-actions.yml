@@ -8,31 +8,40 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.x'
+
       - name: Install dependencies
         run: yarn
+
       - name: Bundle
         run: yarn install
+
       - name: Testing
         run: yarn test
+
   push-image:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Login to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
+
       - name: Build and push
         uses: docker/build-push-action@v4
         id: docker_push
@@ -41,8 +50,10 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/nest-ci-cd:latest
+
       - name: verify
         run: echo ${{steps.docker_push.outputs.digest}}
+
   deploy:
     needs: push-image
     runs-on: ubuntu-latest
