@@ -68,7 +68,7 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
           script: |
-            ho_mang_098_compose
+            ho_mang_098_composer
             docker stop nest-app-api
             docker rm nest-app-api  
             docker image prune -a -f
