@@ -55,4 +55,4 @@ jobs:
           key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
           script: |
             whoami
-            ls -al
+            cat thoanh.text
