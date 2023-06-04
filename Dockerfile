@@ -1,7 +1,9 @@
 FROM node:18
 WORKDIR /app
-COPY . .
+COPY ./package.json ./
+COPY ./yarn.lock ./
 RUN yarn install --production
 RUN yarn build
-CMD ["node", "dist/main"]
+COPY . .
+CMD ["yarn", "start:prod"]
 EXPOSE 3000
