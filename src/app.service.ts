@@ -7,6 +7,6 @@ export class AppService {
   }
 
   test(): string {
-    return 'hello my friend!';
+    return 'hello kitty';
   }
 }
