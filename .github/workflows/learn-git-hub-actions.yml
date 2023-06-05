@@ -69,8 +69,8 @@ jobs:
           key: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
           script: |
             ho_mang_098_composer
-            docker stop nest-app-api
-            docker rm nest-app-api  
+            # docker stop nest-app-api
             docker image prune -a -f
             docker pull ${{ secrets.DOCKERHUB_USERNAME }}/nest-ci-cd:latest
+            docker rm nest-app-api -f 
             docker run --name=nest-app-api -dp 3000:3000 ${{ secrets.DOCKERHUB_USERNAME }}/nest-ci-cd:latest
